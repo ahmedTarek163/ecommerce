@@ -15,7 +15,7 @@ export class PaymevtService {
  
  pay(id:string|null,shipp:object):Observable<any>{
 
-  return this._HttpClient.post(`${environment.baseurl}/api/v1/orders/checkout-session/${id}?url=http://localhost:4200`,
+  return this._HttpClient.post(`${environment.baseurl}/api/v1/orders/checkout-session/${id}?url=http://ecommerce-lap.vercel.app`,
     {
       "shippingAddress":shipp
     },
