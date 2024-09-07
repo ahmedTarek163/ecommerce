@@ -1,0 +1,98 @@
+<section class="bg-main-light shadow p-2 my-2 rounded">
+    <h2 class="text-center text-main py-4">forget password</h2>
+
+  @if (step==1) {
+    <form [formGroup]="verifyemail "   (ngSubmit)="vemail()">
+        <div class="py-2">
+           <label for="email"> email</label>
+           <input [ngClass]="{
+             'is-valid':!verifyemail.get('email')?.errors && (verifyemail.get('email')?.touched ||verifyemail.get('email')?.dirty),
+              'is-invalid':verifyemail.get('email')?.errors && (verifyemail.get('email')?.touched ||verifyemail.get('email')?.dirty)
+         }"    formControlName="email" id="email" type="email" class="form-control">
+     
+         @if (verifyemail.get('email')?.errors && (verifyemail.get('email')?.touched ||verifyemail.get('email')?.dirty)) {
+         <div class="w-50 alert alert-danger">
+             @if (verifyemail.get('email')?.getError('required')) {<p class="m-0">email is required</p>}
+             @else if (verifyemail.get('email')?.getError('email')) {<p class="m-0"  >inter valid email</p>}
+             
+         </div>
+      }
+        </div>
+         <button [disabled]="verifyemail.invalid" class="btn-main ms-auto d-block">Verify Email</button>
+       </form>
+  }@else if (step==2) {<form [formGroup]=" verifycode"  (ngSubmit)="vcode()">
+    <div class="py-2">
+    <label for="code">code</label>
+    
+     <input [ngClass]="{
+        'is-valid':!verifycode.get('resetCode')?.errors && (verifycode.get('resetCode')?.touched ||verifycode.get('resetCode')?.dirty),
+         'is-invalid':verifycode.get('resetCode')?.errors && (verifycode.get('resetCode')?.touched ||verifycode.get('resetCode')?.dirty)
+    }"    formControlName="resetCode" id="code" type="text" class="form-control">
+    @if (verifycode.get('resetCode')?.errors && (verifycode.get('resetCode')?.touched ||verifycode.get('resetCode')?.dirty)) {
+        <div class="w-50 alert alert-danger">
+            @if (verifycode.get('code')?.getError('resetCode')) {<p class="m-0">code is required</p>}
+            @else if (verifycode.get('resetCode')?.getError('pattern')) {<p class="m-0"  >inter valid email</p>}
+            
+        </div>
+     }
+
+    </div>
+    <button [disabled]="verifycode.invalid" class="btn-main ms-auto d-block">Verify code</button>
+   </form>  }@else if (step==3) {
+    <form [formGroup]="verifypassword"  (ngSubmit)="vREPASSWORD()">
+        <div class="my-2">
+            <label for="email">email</label>
+            <input readonly [ngClass]="{
+              'is-valid':!verifypassword.get('email')?.errors && (verifypassword.get('email')?.touched ||verifypassword.get('email')?.dirty),
+               'is-invalid':verifypassword.get('email')?.errors && (verifypassword.get('email')?.touched ||verifypassword.get('email')?.dirty)
+          }"    formControlName="email" id="email" type="email" class="form-control">
+      
+          @if (verifypassword.get('email')?.errors && (verifypassword.get('email')?.touched ||verifypassword.get('email')?.dirty)) {
+          <div class="w-50 alert alert-danger">
+              @if (verifypassword.get('email')?.getError('required')) {<p class="m-0">email is required</p>}
+              @else if (verifypassword.get('email')?.getError('email')) {<p class="m-0"  >inter valid email</p>}
+              
+          </div>
+        }
+    
+    </div>
+    <div class="my-2">
+        <label for="newpassword">new password</label>
+        <input [ngClass]="{
+            'is-valid':!verifypassword.get('password')?.errors && (verifypassword.get('password')?.touched ||verifypassword.get('password')?.dirty),
+             'is-invalid':verifypassword.get('password')?.errors && (verifypassword.get('password')?.touched ||verifypassword.get('password')?.dirty)
+        }"
+        type="password" id="newpassword" class="form-control " formControlName="newpassword">
+        @if (verifypassword.get('newpassword')?.errors &&  (verifypassword.get('newpassword')?.touched||verifypassword.get('newpassword')?.dirty)) {
+            <div class="w-50 alert alert-danger">
+                @if (verifypassword.get('newpassword')?.getError('required')) {<p class="m-0">password is required</p>}
+                @else if (verifypassword.get('newpassword')?.getError('pattern')) {<p class="m-0"  >inter valid password </p>}
+                
+            </div>
+         }
+    
+    </div>
+    <button  class="btn-main ms-auto d-block" type="submit">login 
+        <!-- @if(spin){
+            <span><i class="fas fa-spin fa-spinner"></i></span>
+        } -->
+        
+       </button>
+       <!-- @if (errormessage) {<p class="alert-danger alert m-0  w-50" >{{errormessage}}</p>}
+    
+              @if (messagesuccess) {
+                <p class="text-center  "> success</p>
+              }
+            -->
+    
+     </form>
+    
+   }
+
+
+
+   
+
+ 
+
+</section>

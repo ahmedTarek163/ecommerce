@@ -1,0 +1,62 @@
+<section class="bg-main-light shadow p-2 my-2 rounded w-75 m-auto ">
+  <h2 class="text-main py-2 text-center">your information</h2>
+  <form [formGroup]="inform" (ngSubmit)="ordersub()" >
+    <div>
+      <label for="details">Details</label>
+      <textarea  [ngClass]="{
+        'is-valid':!inform.get('details')?.errors && (inform.get('details')?.touched ||inform.get('details')?.dirty),
+         'is-invalid':inform.get('details')?.errors && (inform.get('details')?.touched ||inform.get('details')?.dirty)
+    }"
+      
+      formControlName="details" class="form-control " id="details"></textarea>
+      @if (inform.get('details')?.errors && (inform.get('details')?.touched||inform.get('details')?.dirty)) {
+        <div class="w-50 alert alert-danger">
+            @if (inform.get('details')?.getError('required')) {<p class="m-0">details is required</p>}
+            
+        </div>
+     }
+
+    </div>
+
+    <div>
+        <label for="phone">phone</label>
+        <input [ngClass]="{
+          'is-valid':!inform.get('phone')?.errors && (inform.get('phone')?.touched ||inform.get('phone')?.dirty),
+           'is-invalid':inform.get('phone')?.errors && (inform.get('phone')?.touched ||inform.get('phone')?.dirty)
+      }"
+       
+             formControlName="phone" class="form-control" id="phone" type="tel">
+             @if (inform.get('phone')?.errors && (inform.get('phone')?.touched||inform.get('phone')?.dirty)) {
+              <div class="w-50 alert alert-danger">
+                  @if (inform.get('phone')?.getError('required')) {<p class="m-0">phone is required</p>}
+                  @else if (inform.get('phone')?.getError('pattern')) {<p class="m-0"  >inter valid phone number ,should be egyption number</p>}
+                  
+              </div>
+           }
+  
+      </div>
+      <div>
+        <label for="city">city</label>
+        <input [ngClass]="{
+          'is-valid':!inform.get('city')?.errors && (inform.get('city')?.touched ||inform.get('city')?.dirty),
+           'is-invalid':inform.get('city')?.errors && (inform.get('city')?.touched ||inform.get('city')?.dirty)
+      }"
+         formControlName="city" class="form-control" id="city" type="text">
+
+         @if (inform.get('city')?.errors && (inform.get('city')?.touched||inform.get('city')?.dirty)) {
+          <div class="w-50 alert alert-danger">
+              @if (inform.get('city')?.getError('required')) {<p class="m-0">city is required</p>}
+              
+          </div>
+       }
+  
+      </div>
+      <button type="submit" class=" btn-main my-2">Pay</button>
+
+  </form>
+
+
+
+
+
+</section>

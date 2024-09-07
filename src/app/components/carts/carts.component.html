@@ -1,0 +1,40 @@
+<section class="bg-main-light shadow p-2 my-2 rounded w-75 m-auto ">
+ <h2 class="text-main text-center">shop cart </h2>
+ <button (click)="cleerallcart()" class="btn btn-outline-danger ms-auto d-block">clear</button>
+ <p class="text-main"> total cart price : {{ cartdetails.totalCartPrice | currency: 'GBP' }} </p>
+
+ @for (item of cartdetails.products ; track item.product.id) {
+
+    <div class="row py-2 border-bottom">
+      <div class="col-md-1">
+        <div>
+            <img [src]="item.product.imageCover" alt="" class="w-100">
+        </div>
+      </div>
+      <div class="col-md-11 d-flex justify-content-between">
+         <div>
+          
+          <h3 class="h5">{{item.product.title}}</h3>
+          <h3 class="h5">{{item.price | currency :'GBP'}}</h3>
+          <button class="btn" (click)="delet(item.product.id)"><i class=" cursor-pointer text-danger fa-solid fa-trash fa-2x"></i></button>
+         
+
+         </div>
+         <div class="d-flex align-items-center justify-content-center g-4 ">
+          <span (click)="newcount(item.product.id,item.count+1)" class="cursor-pointer"><i class="text-main fa-solid fa-circle-plus fa-1x "></i></span>
+          <span class="px-1">{{item.count}}</span>
+          <span (click)="newcount(item.product.id,item.count-1)" class="cursor-pointer"><i class="text-main fa-solid fa-circle-minus fa-1x "></i></span>
+
+         </div>
+
+
+
+      </div>
+
+
+    </div>
+
+ }
+ <button [routerLink]="['/order',cartdetails._id]" routerLinkActive="router-link-active"  class=" btn-main my-2"> Order</button>
+
+</section>

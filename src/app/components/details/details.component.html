@@ -1,0 +1,48 @@
+
+@if (details) {
+
+    <section>
+        <div class="row align-items-center">
+       
+       <div class="col-md-3">
+           <div>
+               <img [src]="details.imageCover" [alt]="details.title" class="w-100">
+           </div>
+       </div>
+       
+       
+       <div class="col-md-9">
+       <h2>{{details.title}}</h2>
+       <p>{{details.description}}</p>
+       <p class="h6">{{details.category.name}}</p>
+       <div class="d-flex justify-content-between align-items-center">
+           <span>{{details.price}} EGB</span>
+           <div>
+               @for( star of [0,1,2,3,4].slice(0,details.ratingsAverage); track $index ){
+                   <i class="fas fa-star rating-color"></i>
+               }
+               @if (details.ratingsAverage %2 !==0) {
+                   <i class="fa-solid fa-star-half-stroke rating-color "></i>
+               }
+               
+               <span class="text-muted">{{details.ratingsAverage}}</span>
+           </div>
+       
+        </div>
+       
+        <button (click)="addcart(details.id)" class="btn-main w-100">+Add to Cart</button>
+       
+       </div>
+       
+       
+       
+        </div>
+       
+       
+       </section> 
+       
+
+}
+
+
+ 

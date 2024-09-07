@@ -1,0 +1,36 @@
+<section class="mt-2"> 
+    <input [(ngModel)]="word" type="search" class="form-control w-50 ms-auto my-2 mx-auto " placeholder="search by name">
+
+  <div class="row g-3 ">
+
+    @for( product of allproducts | search : word; track product.id ){
+    <div class="col-md-3 ">
+        <div class=" p-2 product  " >
+         <div [routerLink]="['/details' , product.id]" >
+            <img [src]="product.imageCover" [alt]="product.title" class="w-100">
+         <h3 class="small main-color">{{product.category.name}}</h3>
+         <h4 class="h6">{{product.title.split(" ",2).join(" ")}}</h4>
+         <div class="d-flex justify-content-between align-items-center">
+            <span>{{product.price|currency :'GBP' }} </span>
+            <div>
+                @for( star of [0,1,2,3,4].slice(0,product.ratingsAverage); track $index ){
+                    <i class="fas fa-star rating-color"></i>
+                }
+                @if (product.ratingsAverage %2 !==0) {
+                    <i class="fa-solid fa-star-half-stroke rating-color "></i>
+                }
+                
+                <span class="text-muted">{{product.ratingsAverage}}</span>
+            </div>
+
+         </div>
+         </div>
+         <span  [ngClass]="{'text-danger': _WishlistService.isInWishlist(product.id)}" class="cursor-pointer" (click)="_WishlistService.toggle(product.id)"><i class="fa-solid fa-heart fa-2xl my-3 "></i></span>
+
+         <button class="btn-main w-100" (click)="addcart(product.id)">Add to Cart</button>
+        </div>
+       
+    </div>}
+</div>
+</section>
+

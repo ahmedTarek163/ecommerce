@@ -1,0 +1,20 @@
+<section class="w-75 m-auto py-3">
+    <div class="row g-3 d-flex justify-content-center align-items-center ">
+       @for (cat of alldata; track $index) {
+        <div class="col-md-4 rounded  p-2  ">
+            <div class="product ">
+                <img [src]="cat.image" style="height: 300px;" class="w-100" alt="">
+                <div class="border" >
+                    <h2 class="text-main text-center">{{cat.name}}</h2>
+                </div>
+            </div>
+        </div>
+       }
+      
+    
+    </div>
+    
+    
+    
+    
+    </section>

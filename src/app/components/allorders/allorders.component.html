@@ -1,0 +1,20 @@
+<section class="bg-main-light shadow p-2 my-2 rounded w-75 m-auto ">
+
+@for(o of allorders;track $index){
+    @for(item of o.cartItems;track $index){
+        <div class="row p-2 shadow border-bottom">
+            <div class="col-md-2">
+                <img [src]="item.product.imageCover" [alt]="item.product.title" class="w-100">
+            </div>
+            <div class="col-md-10">
+                <h2  class="h3 text-main">{{item.product.title}}</h2>
+                <p class="h3">{{item.price}}EGP</p>
+                <h2 class="h6">{{item.product.category.name}}</h2>
+                <h2 class="h6">{{item.product.brand.name}}</h2>
+            </div>
+        </div>
+    }
+}
+
+
+</section>
